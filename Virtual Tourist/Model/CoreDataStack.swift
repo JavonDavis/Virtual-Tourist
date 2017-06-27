@@ -1,6 +1,7 @@
 //
 //  CoreDataStack.swift
 //
+//
 //  Created by Fernando Rodríguez Romero on 21/02/16.
 //  Copyright © 2016 udacity.com. All rights reserved.
 //
@@ -52,7 +53,7 @@ struct CoreDataStack {
             return nil
         }
         
-        self.dbURL = docUrl.appendingPathComponent("tourist_model.sqlite")
+        self.dbURL = docUrl.appendingPathComponent("model.sqlite")
         
         // Options for migration
         let options = [NSInferMappingModelAutomaticallyOption: true,NSMigratePersistentStoresAutomaticallyOption: true]

@@ -1,5 +1,5 @@
 //
-//  Pin+CoreDataProperties.swift
+//  PhotoAlbum+CoreDataProperties.swift
 //  Virtual Tourist
 //
 //  Created by Javon Davis on 27/06/2017.
@@ -10,21 +10,22 @@ import Foundation
 import CoreData
 
 
-extension Pin {
+extension PhotoAlbum {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Pin> {
-        return NSFetchRequest<Pin>(entityName: "Pin")
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<PhotoAlbum> {
+        return NSFetchRequest<PhotoAlbum>(entityName: "PhotoAlbum")
     }
 
-    @NSManaged public var latitude: Double
-    @NSManaged public var longitude: Double
-    @NSManaged public var createdDate: NSDate?
+    @NSManaged public var createdAt: Date?
+    @NSManaged public var updatedAt: Date?
+    @NSManaged public var name: String?
     @NSManaged public var photos: NSSet?
+    @NSManaged public var pin: Pin?
 
 }
 
 // MARK: Generated accessors for photos
-extension Pin {
+extension PhotoAlbum {
 
     @objc(addPhotosObject:)
     @NSManaged public func addToPhotos(_ value: Photo)
