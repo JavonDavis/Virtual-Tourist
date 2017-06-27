@@ -12,11 +12,11 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let coreDataStack = CoreDataStack(modelName: "TouristModel")! // i.e. NSManagedObjectModel, NSManagedObjectContext, NSPersistenceStore, NSPersistenceStoreCoordinator
+    let coreDataStack = CoreDataStack(modelName: "TouristModel")! // i.e. NSManagedObjectModel, NSManagedObjectContext, NSPersistentStore, NSPersistentStoreCoordinator
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        coreDataStack.autoSave(60)
         return true
     }
 

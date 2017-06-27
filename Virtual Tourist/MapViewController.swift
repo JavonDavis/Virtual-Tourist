@@ -14,7 +14,12 @@ class MapViewController: UIViewController {
     @IBOutlet weak var editPinsLabel: UILabel!
     @IBOutlet weak var mapView: MKMapView!
     var isDeleting = false
+    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    lazy var context: NSManagedObjectContext = self.appDelegate.coreDataStack.context
 
+    var annotations = [MKPointAnnotation]()
+    
     // MARK:- Lifecycle
     
     override func viewDidLoad() {
@@ -41,6 +46,23 @@ class MapViewController: UIViewController {
         self.view.frame.origin.y -= editPinsLabel.frame.height
     }
     
+    // MARK:- MapView Functions
+    
+    func loadPins(pins: [Pin]) {
+        mapView.removeAnnotations(annotations)
+        for pin in pins {
+            addPinToMap(pin: pin)
+        }
+    }
+    
+    func addPinToMap(pin: Pin) {
+        self.mapView.addAnnotation(getAnnotation(pin: pin))
+    }
+    
+    func removePinFromMap(annotation: MKPointAnnotation) {
+        self.mapView.removeAnnotation(annotation)
+    }
+    
     // MARK:- MapView Long Tap Handler
     
     func addLongTapGestureRecogniser() {
@@ -63,11 +85,19 @@ class MapViewController: UIViewController {
     func fetchPins() {
         let pinsFetchRequest: NSFetchRequest<Pin> = Pin.fetchRequest()
         
-        
+        do {
+            let pins = try context.fetch(pinsFetchRequest) 
+            loadPins(pins: pins)
+        } catch {
+            print("Failed to get Pins")
+            print(error.localizedDescription)
+            self.showAlert(title: "Oops!", message: "There was an error loading your existing pins")
+        }
     }
     
     func savePin(latitude: Double, longitude: Double) {
-        
+        let pin = Pin(latitude: latitude, longitde: longitude, context: context)
+        addPinToMap(pin: pin)
     }
     
     // MARK:- IBActions

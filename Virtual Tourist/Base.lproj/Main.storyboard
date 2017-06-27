@@ -56,7 +56,7 @@
                     <connections>
                         <outlet property="editPinsLabel" destination="rAU-eF-EIa" id="dNl-xK-S2k"/>
                         <outlet property="mapView" destination="1Wo-ed-grz" id="kBY-A2-lJ8"/>
-                        <segue destination="xTe-un-zb9" kind="show" id="POO-Hv-Du5"/>
+                        <segue destination="xTe-un-zb9" kind="show" identifier="showPhotoAlbums" id="POO-Hv-Du5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

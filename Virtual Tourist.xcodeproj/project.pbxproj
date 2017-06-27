@@ -22,6 +22,8 @@
 		8A5CDC481F02F9B800D9205C /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CDC471F02F9B800D9205C /* CoreDataStack.swift */; };
 		8A5CDC4C1F03000A00D9205C /* Pin+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CDC4A1F03000A00D9205C /* Pin+CoreDataProperties.swift */; };
 		8A5CDC4D1F03000A00D9205C /* PhotoAlbum+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CDC4B1F03000A00D9205C /* PhotoAlbum+CoreDataProperties.swift */; };
+		8AD063461F0303B50049134F /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD063451F0303B50049134F /* UIViewController+Alert.swift */; };
+		8AD063481F0307DF0049134F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD063471F0307DF0049134F /* Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		8A5CDC471F02F9B800D9205C /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		8A5CDC4A1F03000A00D9205C /* Pin+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Pin+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8A5CDC4B1F03000A00D9205C /* PhotoAlbum+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoAlbum+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8AD063451F0303B50049134F /* UIViewController+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
+		8AD063471F0307DF0049134F /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,7 @@
 				8A01E60D1F022937006C6FE6 /* Assets */,
 				8A01E60C1F022908006C6FE6 /* Storyboards */,
 				8A01E60B1F0228ED006C6FE6 /* Supporting Files */,
+				8AD063471F0307DF0049134F /* Utils.swift */,
 			);
 			path = "Virtual Tourist";
 			sourceTree = "<group>";
@@ -152,6 +157,7 @@
 			children = (
 				8A5CDC221F02D6BF00D9205C /* Photo Album View */,
 				8A5CDC201F02CE5D00D9205C /* Travel Locations Map View */,
+				8AD063451F0303B50049134F /* UIViewController+Alert.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -285,6 +291,8 @@
 				8A5CDC421F02F9A300D9205C /* Photo+CoreDataProperties.swift in Sources */,
 				8A5CDC481F02F9B800D9205C /* CoreDataStack.swift in Sources */,
 				8A5CDC411F02F9A300D9205C /* Photo+CoreDataClass.swift in Sources */,
+				8AD063481F0307DF0049134F /* Utils.swift in Sources */,
+				8AD063461F0303B50049134F /* UIViewController+Alert.swift in Sources */,
 				8A5CDC4C1F03000A00D9205C /* Pin+CoreDataProperties.swift in Sources */,
 				8A01E5E81F020C45006C6FE6 /* MapViewController.swift in Sources */,
 				8A5CDC1F1F02CE4A00D9205C /* MapViewController+MapViewDelegate.swift in Sources */,
