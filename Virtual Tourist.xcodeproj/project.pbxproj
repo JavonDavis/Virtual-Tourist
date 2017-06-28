@@ -24,6 +24,7 @@
 		8A5CDC4D1F03000A00D9205C /* PhotoAlbum+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CDC4B1F03000A00D9205C /* PhotoAlbum+CoreDataProperties.swift */; };
 		8AD063461F0303B50049134F /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD063451F0303B50049134F /* UIViewController+Alert.swift */; };
 		8AD063481F0307DF0049134F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD063471F0307DF0049134F /* Utils.swift */; };
+		8AD0634A1F0460300049134F /* PhotoAlbumViewController+MapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD063491F0460300049134F /* PhotoAlbumViewController+MapViewDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		8A5CDC4B1F03000A00D9205C /* PhotoAlbum+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoAlbum+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8AD063451F0303B50049134F /* UIViewController+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		8AD063471F0307DF0049134F /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		8AD063491F0460300049134F /* PhotoAlbumViewController+MapViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoAlbumViewController+MapViewDelegate.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				8A5CDC231F02D6ED00D9205C /* PhotoAlbumViewController.swift */,
+				8AD063491F0460300049134F /* PhotoAlbumViewController+MapViewDelegate.swift */,
 			);
 			path = "Photo Album View";
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 				8A01E5E61F020C45006C6FE6 /* AppDelegate.swift in Sources */,
 				8A5CDC451F02F9A300D9205C /* PhotoAlbum+CoreDataClass.swift in Sources */,
 				8A01E5F91F02147E006C6FE6 /* TouristModel.xcdatamodeld in Sources */,
+				8AD0634A1F0460300049134F /* PhotoAlbumViewController+MapViewDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

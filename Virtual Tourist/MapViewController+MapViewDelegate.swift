@@ -32,4 +32,8 @@ extension MapViewController: MKMapViewDelegate {
         print("Pin Tapped")
         
     }
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        saveCenter(coordinate: mapView.centerCoordinate)
+    }
 }

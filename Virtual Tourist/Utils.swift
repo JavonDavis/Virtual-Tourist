@@ -21,3 +21,7 @@ func getAnnotation(pin: Pin) -> MKPointAnnotation {
     
     return annotation
 }
+
+func appHasLaunchedBefore() -> Bool {
+    return UserDefaults.standard.bool(forKey: "hasLaunchedBefore")
+}

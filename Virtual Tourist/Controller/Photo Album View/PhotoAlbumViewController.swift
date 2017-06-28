@@ -10,11 +10,14 @@ import UIKit
 import MapKit
 
 class PhotoAlbumViewController: UIViewController {
+    @IBOutlet weak var mapView: MKMapView!
 
     var pin: Pin?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        mapView.delegate = self
 
     }
 

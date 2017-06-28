@@ -27,15 +27,42 @@ class MapViewController: UIViewController {
         
         mapView.delegate = self
         
+        // Set default center, if any
+        checkMapDefaults()
+        
         // Detect Long Taps on the Map
         addLongTapGestureRecogniser()
         
+        // Load the pins from PersistentStore
+        fetchPins()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
     
+    // MARK:- Mapview UserDefaults
+    
+    func saveCenter(coordinate: CLLocationCoordinate2D) {
+        UserDefaults.standard.set(coordinate.latitude, forKey: "latitude")
+        UserDefaults.standard.set(coordinate.longitude, forKey: "longitude")
+    }
+    
+    func getCenter() -> CLLocationCoordinate2D {
+        let latitude = UserDefaults.standard.double(forKey: "latitude")
+        let longitude = UserDefaults.standard.double(forKey: "longitude")
+        
+        return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
+    
+    func checkMapDefaults() {
+        if appHasLaunchedBefore() {
+            let coordinate = getCenter()
+            mapView.setCenter(coordinate, animated: false)
+        } else {
+            saveCenter(coordinate: mapView.centerCoordinate)
+        }
+    }
     // MARK:- Hide and show Pin Label
     
     func hideEditPinsLabel() {
@@ -71,13 +98,12 @@ class MapViewController: UIViewController {
     }
     
     func handleLongTap(gestureRecognizer: UILongPressGestureRecognizer) {
-        let location = gestureRecognizer.location(in: mapView)
-        let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
-        
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = coordinate
-        mapView.addAnnotation(annotation)
-        
+        if gestureRecognizer.state == .ended {
+            let location = gestureRecognizer.location(in: mapView)
+            let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
+            
+            savePin(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        }
     }
     
     // MARK:- Core Data Functions
