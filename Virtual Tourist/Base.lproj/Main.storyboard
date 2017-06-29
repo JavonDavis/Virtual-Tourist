@@ -84,20 +84,20 @@
                                 </constraints>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F8Y-EJ-7M3">
-                                <rect key="frame" x="163" y="224" width="89" height="30"/>
+                                <rect key="frame" x="163" y="232" width="89" height="30"/>
                                 <state key="normal" title="Photo Album"/>
                                 <connections>
                                     <action selector="changeName:" destination="xTe-un-zb9" eventType="touchUpInside" id="fMy-1X-vkv"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Photo Album Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wNX-DT-bGq">
-                                <rect key="frame" x="134" y="224" width="146" height="30"/>
+                                <rect key="frame" x="134" y="232" width="146" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="TqE-Ge-wKD">
-                                <rect key="frame" x="0.0" y="262" width="414" height="424"/>
+                                <rect key="frame" x="0.0" y="270" width="414" height="416"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="UGy-2T-gQg">
                                     <size key="itemSize" width="100" height="100"/>
@@ -125,7 +125,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3av-Ol-yLy">
-                                <rect key="frame" x="288" y="224" width="101" height="30"/>
+                                <rect key="frame" x="288" y="232" width="101" height="30"/>
                                 <state key="normal" title="Change Album"/>
                                 <connections>
                                     <action selector="changeAlbum:" destination="xTe-un-zb9" eventType="touchUpInside" id="jrN-SL-xZ0"/>
@@ -135,7 +135,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="DRa-TQ-L7u" firstAttribute="leading" secondItem="WcL-bP-6Sm" secondAttribute="leading" id="7VK-Tr-DPb"/>
-                            <constraint firstItem="F8Y-EJ-7M3" firstAttribute="top" secondItem="DRa-TQ-L7u" secondAttribute="bottom" id="CMu-HW-xHj"/>
+                            <constraint firstItem="F8Y-EJ-7M3" firstAttribute="top" secondItem="DRa-TQ-L7u" secondAttribute="bottom" constant="8" id="CMu-HW-xHj"/>
                             <constraint firstItem="3av-Ol-yLy" firstAttribute="centerY" secondItem="wNX-DT-bGq" secondAttribute="centerY" id="Dea-jp-Wv3"/>
                             <constraint firstAttribute="trailing" secondItem="DRa-TQ-L7u" secondAttribute="trailing" id="GW9-iG-wdI"/>
                             <constraint firstItem="F8Y-EJ-7M3" firstAttribute="centerX" secondItem="DRa-TQ-L7u" secondAttribute="centerX" id="Iiq-q7-Oc1"/>
@@ -143,7 +143,7 @@
                             <constraint firstItem="NPv-V3-M4Q" firstAttribute="top" secondItem="TqE-Ge-wKD" secondAttribute="bottom" constant="8" id="RT8-YV-TNK"/>
                             <constraint firstItem="TqE-Ge-wKD" firstAttribute="top" secondItem="wNX-DT-bGq" secondAttribute="bottom" constant="8" id="WDG-GE-DAK"/>
                             <constraint firstItem="DRa-TQ-L7u" firstAttribute="top" secondItem="Uj5-Qu-Tag" secondAttribute="bottom" id="WQa-px-KO3"/>
-                            <constraint firstItem="wNX-DT-bGq" firstAttribute="top" secondItem="DRa-TQ-L7u" secondAttribute="bottom" id="YhV-u8-Sfu"/>
+                            <constraint firstItem="wNX-DT-bGq" firstAttribute="top" secondItem="DRa-TQ-L7u" secondAttribute="bottom" constant="8" id="YhV-u8-Sfu"/>
                             <constraint firstItem="TqE-Ge-wKD" firstAttribute="leading" secondItem="WcL-bP-6Sm" secondAttribute="leading" id="byN-2U-dEg"/>
                             <constraint firstItem="NPv-V3-M4Q" firstAttribute="centerX" secondItem="TqE-Ge-wKD" secondAttribute="centerX" id="dHe-9U-IN4"/>
                             <constraint firstItem="wNX-DT-bGq" firstAttribute="centerX" secondItem="DRa-TQ-L7u" secondAttribute="centerX" id="dl0-Qd-CZq"/>

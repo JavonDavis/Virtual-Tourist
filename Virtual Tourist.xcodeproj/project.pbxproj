@@ -32,6 +32,7 @@
 		8AD0635B1F04C3BB0049134F /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD0635A1F04C3BB0049134F /* Types.swift */; };
 		8AD0635F1F04E0340049134F /* PhotoAlbum+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD0635C1F04E0340049134F /* PhotoAlbum+CoreDataProperties.swift */; };
 		8AD063651F04F8E60049134F /* MKVisualTouristAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD063641F04F8E60049134F /* MKVisualTouristAnnotation.swift */; };
+		8AD063671F04FDFA0049134F /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD063661F04FDFA0049134F /* GCDBlackBox.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		8AD0635A1F04C3BB0049134F /* Types.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		8AD0635C1F04E0340049134F /* PhotoAlbum+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoAlbum+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8AD063641F04F8E60049134F /* MKVisualTouristAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKVisualTouristAnnotation.swift; sourceTree = "<group>"; };
+		8AD063661F04FDFA0049134F /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 				8AD063471F0307DF0049134F /* Utils.swift */,
 				8A01E5E51F020C45006C6FE6 /* AppDelegate.swift */,
 				8AD063521F04B5AD0049134F /* Constants.swift */,
+				8AD063661F04FDFA0049134F /* GCDBlackBox.swift */,
 			);
 			path = "Virtual Tourist";
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 				8AD063511F04AA950049134F /* PhotoAlbumViewController+CollectionViewDelegate.swift in Sources */,
 				8A5CDC481F02F9B800D9205C /* CoreDataStack.swift in Sources */,
 				8AD0635B1F04C3BB0049134F /* Types.swift in Sources */,
+				8AD063671F04FDFA0049134F /* GCDBlackBox.swift in Sources */,
 				8A5CDC411F02F9A300D9205C /* Photo+CoreDataClass.swift in Sources */,
 				8AD063481F0307DF0049134F /* Utils.swift in Sources */,
 				8AD063461F0303B50049134F /* UIViewController+Alert.swift in Sources */,

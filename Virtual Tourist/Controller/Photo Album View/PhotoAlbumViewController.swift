@@ -34,6 +34,7 @@ class PhotoAlbumViewController: UIViewController {
         photoAlbumNameTextField.isHidden = true
         
         // Setup CollectionView
+        collectionView.dataSource = self
         collectionView.delegate = self
         let space: CGFloat = 3.0
         let dimension = (self.view.frame.size.width - (2*space)) / 3.0
@@ -52,6 +53,12 @@ class PhotoAlbumViewController: UIViewController {
             focus(mapView: mapView, location: annotation.coordinate)
             
         }
+        
+        // Setup Button and TextField
+        let photoAlbums = pin?.photoAlbums?.allObjects as! [PhotoAlbum]
+        let photoAlbum = photoAlbums[0]
+        photoAlbumNameButton.setTitle(photoAlbum.name, for: .normal)
+        photoAlbumNameTextField.text = photoAlbum.name
     
     }
     
