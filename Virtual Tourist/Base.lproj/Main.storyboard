@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YfM-aA-dig">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -18,14 +18,14 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="1Wo-ed-grz">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                             </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap Pins to Delete" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rAU-eF-EIa">
-                                <rect key="frame" x="0.0" y="667" width="375" height="80"/>
+                                <rect key="frame" x="0.0" y="736" width="414" height="80"/>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="Qt2-Qi-6QJ"/>
@@ -72,79 +72,87 @@
                         <viewControllerLayoutGuide type="bottom" id="K6h-AK-p0h"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="WcL-bP-6Sm">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="jbT-Qb-qtI">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <subviews>
-                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DRa-TQ-L7u">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="271.5"/>
-                                    </mapView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="fVu-fJ-tDE">
-                                        <rect key="frame" x="0.0" y="271.5" width="375" height="30"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F8Y-EJ-7M3">
-                                                <rect key="frame" x="0.0" y="0.0" width="125" height="30"/>
-                                                <state key="normal" title="Photo Album"/>
-                                                <connections>
-                                                    <action selector="changeName:" destination="xTe-un-zb9" eventType="touchUpInside" id="fMy-1X-vkv"/>
-                                                </connections>
-                                            </button>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Photo Album Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wNX-DT-bGq">
-                                                <rect key="frame" x="125" y="0.0" width="125" height="30"/>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3av-Ol-yLy">
-                                                <rect key="frame" x="250" y="0.0" width="125" height="30"/>
-                                                <state key="normal" title="Change Album"/>
-                                                <connections>
-                                                    <action selector="changeAlbum:" destination="xTe-un-zb9" eventType="touchUpInside" id="jrN-SL-xZ0"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="TqE-Ge-wKD">
-                                        <rect key="frame" x="0.0" y="301.5" width="375" height="271.5"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="UGy-2T-gQg">
-                                            <size key="itemSize" width="100" height="100"/>
-                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        </collectionViewFlowLayout>
-                                        <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photoCollectionViewCell" id="sIS-EU-5do">
-                                                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </view>
-                                            </collectionViewCell>
-                                        </cells>
-                                    </collectionView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NPv-V3-M4Q">
-                                        <rect key="frame" x="0.0" y="573" width="375" height="30"/>
-                                        <state key="normal" title="New Collection"/>
-                                        <connections>
-                                            <action selector="loadNewCollection:" destination="xTe-un-zb9" eventType="touchUpInside" id="5wP-dp-kQ3"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DRa-TQ-L7u">
+                                <rect key="frame" x="0.0" y="64" width="414" height="160"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="160" id="vRr-kE-sfZ">
+                                        <variation key="heightClass=compact" constant="100"/>
+                                    </constraint>
+                                </constraints>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F8Y-EJ-7M3">
+                                <rect key="frame" x="163" y="224" width="89" height="30"/>
+                                <state key="normal" title="Photo Album"/>
+                                <connections>
+                                    <action selector="changeName:" destination="xTe-un-zb9" eventType="touchUpInside" id="fMy-1X-vkv"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Photo Album Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wNX-DT-bGq">
+                                <rect key="frame" x="134" y="224" width="146" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="TqE-Ge-wKD">
+                                <rect key="frame" x="0.0" y="262" width="414" height="424"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="UGy-2T-gQg">
+                                    <size key="itemSize" width="100" height="100"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photoCollectionViewCell" id="sIS-EU-5do" customClass="PhotoAlbumCollectionViewCell" customModule="Virtual_Tourist" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NPv-V3-M4Q">
+                                <rect key="frame" x="146" y="694" width="122" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="New Collection"/>
+                                <connections>
+                                    <action selector="loadNewCollection:" destination="xTe-un-zb9" eventType="touchUpInside" id="5wP-dp-kQ3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3av-Ol-yLy">
+                                <rect key="frame" x="288" y="224" width="101" height="30"/>
+                                <state key="normal" title="Change Album"/>
+                                <connections>
+                                    <action selector="changeAlbum:" destination="xTe-un-zb9" eventType="touchUpInside" id="jrN-SL-xZ0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="jbT-Qb-qtI" firstAttribute="top" secondItem="Uj5-Qu-Tag" secondAttribute="bottom" id="OZa-u1-tRq"/>
-                            <constraint firstAttribute="trailing" secondItem="jbT-Qb-qtI" secondAttribute="trailing" id="S7F-Mk-0i4"/>
-                            <constraint firstItem="K6h-AK-p0h" firstAttribute="top" secondItem="jbT-Qb-qtI" secondAttribute="bottom" id="X5B-Nc-rDr"/>
-                            <constraint firstItem="jbT-Qb-qtI" firstAttribute="leading" secondItem="WcL-bP-6Sm" secondAttribute="leading" id="rDE-hK-o1Y"/>
+                            <constraint firstItem="DRa-TQ-L7u" firstAttribute="leading" secondItem="WcL-bP-6Sm" secondAttribute="leading" id="7VK-Tr-DPb"/>
+                            <constraint firstItem="F8Y-EJ-7M3" firstAttribute="top" secondItem="DRa-TQ-L7u" secondAttribute="bottom" id="CMu-HW-xHj"/>
+                            <constraint firstItem="3av-Ol-yLy" firstAttribute="centerY" secondItem="wNX-DT-bGq" secondAttribute="centerY" id="Dea-jp-Wv3"/>
+                            <constraint firstAttribute="trailing" secondItem="DRa-TQ-L7u" secondAttribute="trailing" id="GW9-iG-wdI"/>
+                            <constraint firstItem="F8Y-EJ-7M3" firstAttribute="centerX" secondItem="DRa-TQ-L7u" secondAttribute="centerX" id="Iiq-q7-Oc1"/>
+                            <constraint firstItem="K6h-AK-p0h" firstAttribute="top" secondItem="NPv-V3-M4Q" secondAttribute="bottom" constant="8" id="J0U-xC-Nb2"/>
+                            <constraint firstItem="NPv-V3-M4Q" firstAttribute="top" secondItem="TqE-Ge-wKD" secondAttribute="bottom" constant="8" id="RT8-YV-TNK"/>
+                            <constraint firstItem="TqE-Ge-wKD" firstAttribute="top" secondItem="wNX-DT-bGq" secondAttribute="bottom" constant="8" id="WDG-GE-DAK"/>
+                            <constraint firstItem="DRa-TQ-L7u" firstAttribute="top" secondItem="Uj5-Qu-Tag" secondAttribute="bottom" id="WQa-px-KO3"/>
+                            <constraint firstItem="wNX-DT-bGq" firstAttribute="top" secondItem="DRa-TQ-L7u" secondAttribute="bottom" id="YhV-u8-Sfu"/>
+                            <constraint firstItem="TqE-Ge-wKD" firstAttribute="leading" secondItem="WcL-bP-6Sm" secondAttribute="leading" id="byN-2U-dEg"/>
+                            <constraint firstItem="NPv-V3-M4Q" firstAttribute="centerX" secondItem="TqE-Ge-wKD" secondAttribute="centerX" id="dHe-9U-IN4"/>
+                            <constraint firstItem="wNX-DT-bGq" firstAttribute="centerX" secondItem="DRa-TQ-L7u" secondAttribute="centerX" id="dl0-Qd-CZq"/>
+                            <constraint firstAttribute="trailing" secondItem="TqE-Ge-wKD" secondAttribute="trailing" id="egl-dC-lmk"/>
+                            <constraint firstItem="3av-Ol-yLy" firstAttribute="leading" secondItem="wNX-DT-bGq" secondAttribute="trailing" constant="8" id="lkj-RZ-0B6"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="collectionView" destination="TqE-Ge-wKD" id="fUG-uK-pyG"/>
                         <outlet property="flowLayout" destination="UGy-2T-gQg" id="zj4-6L-TMB"/>
                         <outlet property="mapView" destination="DRa-TQ-L7u" id="yU7-gA-DZh"/>
                         <outlet property="photoAlbumNameButton" destination="F8Y-EJ-7M3" id="nc6-UD-RU3"/>
@@ -153,22 +161,22 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dmH-PT-1dB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1993" y="139"/>
+            <point key="canvasLocation" x="1992.753623188406" y="138.58695652173915"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="odl-g1-cXc">
             <objects>
                 <tableViewController id="asJ-c5-Vr9" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="aQ9-AH-b7m">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="photoAlbumTableViewCell" id="Dnq-r6-vc0">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dnq-r6-vc0" id="A66-Iw-K2u">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>

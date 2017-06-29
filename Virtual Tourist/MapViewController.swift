@@ -58,7 +58,9 @@ class MapViewController: UIViewController {
     func checkMapDefaults() {
         if appHasLaunchedBefore() {
             let coordinate = getCenter()
+            FlickrClient.shared.getPhotos(latitude: coordinate.latitude, longitude: coordinate.longitude)
             mapView.setCenter(coordinate, animated: false)
+            focus(mapView: mapView, location: coordinate)
         } else {
             saveCenter(coordinate: mapView.centerCoordinate)
         }

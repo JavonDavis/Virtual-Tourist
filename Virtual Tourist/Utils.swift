@@ -9,6 +9,7 @@
 import Foundation
 import MapKit
 
+// Returns an annotation from a given Pin
 func getAnnotation(pin: Pin) -> MKPointAnnotation {
     
     let lat = CLLocationDegrees(pin.latitude)
@@ -23,6 +24,26 @@ func getAnnotation(pin: Pin) -> MKPointAnnotation {
     return annotation
 }
 
+// Returns True if the App has launched before, false otherwise
 func appHasLaunchedBefore() -> Bool {
-    return UserDefaults.standard.bool(forKey: "hasLaunchedBefore")
+    if UserDefaults.standard.bool(forKey: "hasLaunchedBefore") {
+        return true
+    } else {
+        UserDefaults.standard.set(true, forKey: "hasLaunchedBefore")
+        UserDefaults.standard.synchronize()
+        return false
+    }
+}
+
+// Focuses a mapview onto a specific Location coordinate
+
+func focus(mapView: MKMapView, location: CLLocationCoordinate2D) {
+    let latitude = CLLocationDegrees(location.latitude)
+    let longitude = CLLocationDegrees(location.longitude)
+    let latDelta: CLLocationDegrees = 1
+    let lonDelta: CLLocationDegrees = 1
+    let span:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, lonDelta)
+    let location: CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
+    let region: MKCoordinateRegion = MKCoordinateRegionMake(location, span)
+    mapView.setRegion(region, animated: true)
 }
