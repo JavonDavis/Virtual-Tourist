@@ -40,4 +40,10 @@ struct Constants {
             static let total = "total"
         }
     }
+    
+    struct EntityNames {
+        static let pinEntityName = "Pin"
+        static let photoAlbumEntityName = "PhotoAlbum"
+        static let photoEntityName = "Photo"
+    }
 }

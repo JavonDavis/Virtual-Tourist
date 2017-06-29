@@ -9,4 +9,4 @@
 import Foundation
 
 typealias SessionResponse = (Data?, Error?) -> Void // Response from the execution of a SessionTask without the URLResponse?, URL Response parsed in Client
-typealias FlickrPhotoResponse = ([Photo]) -> Void // Response sent to completion when photos are loaded
+typealias FlickrPhotoURLsResponse = ([Dictionary<String, AnyObject>]?, Error?) -> Void // Response sent to completion when photos are loaded

@@ -40,8 +40,8 @@ func appHasLaunchedBefore() -> Bool {
 func focus(mapView: MKMapView, location: CLLocationCoordinate2D) {
     let latitude = CLLocationDegrees(location.latitude)
     let longitude = CLLocationDegrees(location.longitude)
-    let latDelta: CLLocationDegrees = 1
-    let lonDelta: CLLocationDegrees = 1
+    let latDelta: CLLocationDegrees = 0.5
+    let lonDelta: CLLocationDegrees = 0.5
     let span:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, lonDelta)
     let location: CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
     let region: MKCoordinateRegion = MKCoordinateRegionMake(location, span)

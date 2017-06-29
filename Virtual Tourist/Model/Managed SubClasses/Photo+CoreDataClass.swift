@@ -14,7 +14,7 @@ public class Photo: NSManagedObject {
     
     convenience init(imageData: NSData, context: NSManagedObjectContext) {
         
-        let entityName = "Photo"
+        let entityName = Constants.EntityNames.photoEntityName
         
         if let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) {
             self.init(entity: entity, insertInto: context)

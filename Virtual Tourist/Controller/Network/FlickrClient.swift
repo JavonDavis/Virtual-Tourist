@@ -12,7 +12,7 @@ class FlickrClient {
     
     static let shared: FlickrClient = FlickrClient()
     
-    func getPhotos(latitude: Double, longitude: Double) {
+    func getPhotoURLs(latitude: Double, longitude: Double, completion: @escaping FlickrPhotoURLsResponse) {
         let photosURL = Constants.Flickr.endpoint
         let parameters = [
             Constants.Flickr.RequestParameters.apiKey: Constants.Flickr.apiKey,
@@ -26,13 +26,19 @@ class FlickrClient {
         ] as [String: AnyObject]
         
         performGetRequestOn(url: photosURL, with: parameters, completion: { data, err in
+            
+            func sendError(message: String) {
+                let userInfo = [NSLocalizedDescriptionKey : message]
+                completion(nil, NSError(domain: "StudentCreationFromJSON", code: 1, userInfo: userInfo))
+            }
+            
             if let err = err {
                 print(err.localizedDescription)
+                sendError(message: err.localizedDescription)
                 return
             }
             do {
                 let jsonDict = try self.JSONDeserialize(jsonData: data!)
-                print(jsonDict)
                 
                 let status = jsonDict[Constants.Flickr.ResponseKeys.status] as! String
                 
@@ -43,17 +49,21 @@ class FlickrClient {
                     let totalString = photosDict[Constants.Flickr.ResponseKeys.total] as! String
                     let total = Int(totalString)!
                     if total > 0 {
+                        print("Successfully loaded images from Flickr")
                         let photosArray = photosDict[Constants.Flickr.ResponseKeys.photosArray] as! [Dictionary<String, AnyObject>]
+                        completion(photosArray, nil) // Return a list of URLs
                         print(photosArray)
                     } else {
-                        // Empty Array
+                        print("Emptyy Array from Flickr")
+                        completion([], nil)
                     }
                 } else {
-                    // Error from Flickr
+                    print("Error Loading data Fro Flickr")
+                    sendError(message: "Error loading data from Flickr")
                 }
-                print("OK")
             } catch {
                 print(error.localizedDescription)
+                sendError(message: error.localizedDescription)
             }
         })
     }
@@ -93,7 +103,6 @@ class FlickrClient {
         // Build the URL
         let urlParametersString = escapedParameters(parameters)
         let finalURLString = urlString + urlParametersString
-        print(finalURLString)
         let request = NSMutableURLRequest(url: URL(string: finalURLString)!)
         
         // Set the method of the Request

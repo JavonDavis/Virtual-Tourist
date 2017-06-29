@@ -16,8 +16,9 @@ class MapViewController: UIViewController {
     var isDeleting = false
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    lazy var context: NSManagedObjectContext = self.appDelegate.coreDataStack.context
+    lazy var context: NSManagedObjectContext = self.appDelegate.coreDataStack.context // MOC
 
+    var selectedAnnotation: MKAnnotation?
     var annotations = [MKPointAnnotation]()
     
     // MARK:- Lifecycle
@@ -58,7 +59,6 @@ class MapViewController: UIViewController {
     func checkMapDefaults() {
         if appHasLaunchedBefore() {
             let coordinate = getCenter()
-            FlickrClient.shared.getPhotos(latitude: coordinate.latitude, longitude: coordinate.longitude)
             mapView.setCenter(coordinate, animated: false)
             focus(mapView: mapView, location: coordinate)
         } else {
@@ -77,7 +77,7 @@ class MapViewController: UIViewController {
     
     // MARK:- MapView Functions
     
-    func loadPins(pins: [Pin]) {
+    func loadPinsOntoMap(pins: [Pin]) {
         mapView.removeAnnotations(annotations)
         for pin in pins {
             addPinToMap(pin: pin)
@@ -115,7 +115,7 @@ class MapViewController: UIViewController {
         
         do {
             let pins = try context.fetch(pinsFetchRequest) 
-            loadPins(pins: pins)
+            loadPinsOntoMap(pins: pins)
         } catch {
             print("Failed to get Pins")
             print(error.localizedDescription)
@@ -125,7 +125,20 @@ class MapViewController: UIViewController {
     
     func savePin(latitude: Double, longitude: Double) {
         let pin = Pin(latitude: latitude, longitde: longitude, context: context)
+        let photoAlbum = PhotoAlbum(name: "Photo Album 1", context: context)
+        photoAlbum.pin = pin
+        
         addPinToMap(pin: pin)
+        // TODO: Get Photos in Background
+    }
+    
+    // MARK:- Load Flickr Response 
+    
+    func parseFlickrResponse(photoObjects: [Dictionary<String, AnyObject>]?, error: Error?) {
+        guard error == nil else {
+            // Show alert
+            return
+        }
     }
     
     // MARK:- IBActions
@@ -143,5 +156,13 @@ class MapViewController: UIViewController {
         isDeleting = !isDeleting
     }
     
+    // MARK:- Segue preparation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showPhotoAlbums" {
+            let vc = segue.destination as! PhotoAlbumViewController
+            vc.annotation = selectedAnnotation
+        }
+    }
 }
 

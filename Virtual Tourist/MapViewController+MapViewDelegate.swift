@@ -31,7 +31,10 @@ extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         print("Pin Tapped")
-        performSegue(withIdentifier: "showPhotoAlbum", sender: self)
+        
+        selectedAnnotation = view.annotation
+        
+        performSegue(withIdentifier: "showPhotoAlbums", sender: self)
     }
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {

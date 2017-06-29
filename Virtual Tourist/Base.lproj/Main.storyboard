@@ -56,7 +56,7 @@
                     <connections>
                         <outlet property="editPinsLabel" destination="rAU-eF-EIa" id="dNl-xK-S2k"/>
                         <outlet property="mapView" destination="1Wo-ed-grz" id="kBY-A2-lJ8"/>
-                        <segue destination="xTe-un-zb9" kind="show" identifier="showPhotoAlbum" id="POO-Hv-Du5"/>
+                        <segue destination="xTe-un-zb9" kind="show" identifier="showPhotoAlbums" id="POO-Hv-Du5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -157,6 +157,7 @@
                         <outlet property="mapView" destination="DRa-TQ-L7u" id="yU7-gA-DZh"/>
                         <outlet property="photoAlbumNameButton" destination="F8Y-EJ-7M3" id="nc6-UD-RU3"/>
                         <outlet property="photoAlbumNameTextField" destination="wNX-DT-bGq" id="1iB-fv-iAA"/>
+                        <segue destination="asJ-c5-Vr9" kind="presentation" identifier="showAllAlbums" id="uyt-zl-FyJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dmH-PT-1dB" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -14,7 +14,7 @@ public class Pin: NSManagedObject {
 
     convenience init(latitude: Double, longitde: Double, context: NSManagedObjectContext) {
         
-        let entityName = "Pin"
+        let entityName = Constants.EntityNames.pinEntityName
         
         if let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) {
             self.init(entity: entity, insertInto: context)
