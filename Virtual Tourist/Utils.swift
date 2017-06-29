@@ -17,6 +17,7 @@ func getAnnotation(pin: Pin) -> MKPointAnnotation {
     let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
     
     let annotation = MKPointAnnotation()
+    annotation.title = "Number of Albums"
     annotation.coordinate = coordinate
     
     return annotation
