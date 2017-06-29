@@ -124,19 +124,11 @@
                                     <action selector="loadNewCollection:" destination="xTe-un-zb9" eventType="touchUpInside" id="5wP-dp-kQ3"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3av-Ol-yLy">
-                                <rect key="frame" x="288" y="232" width="101" height="30"/>
-                                <state key="normal" title="Change Album"/>
-                                <connections>
-                                    <action selector="changeAlbum:" destination="xTe-un-zb9" eventType="touchUpInside" id="jrN-SL-xZ0"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="DRa-TQ-L7u" firstAttribute="leading" secondItem="WcL-bP-6Sm" secondAttribute="leading" id="7VK-Tr-DPb"/>
                             <constraint firstItem="F8Y-EJ-7M3" firstAttribute="top" secondItem="DRa-TQ-L7u" secondAttribute="bottom" constant="8" id="CMu-HW-xHj"/>
-                            <constraint firstItem="3av-Ol-yLy" firstAttribute="centerY" secondItem="wNX-DT-bGq" secondAttribute="centerY" id="Dea-jp-Wv3"/>
                             <constraint firstAttribute="trailing" secondItem="DRa-TQ-L7u" secondAttribute="trailing" id="GW9-iG-wdI"/>
                             <constraint firstItem="F8Y-EJ-7M3" firstAttribute="centerX" secondItem="DRa-TQ-L7u" secondAttribute="centerX" id="Iiq-q7-Oc1"/>
                             <constraint firstItem="K6h-AK-p0h" firstAttribute="top" secondItem="NPv-V3-M4Q" secondAttribute="bottom" constant="8" id="J0U-xC-Nb2"/>
@@ -148,9 +140,15 @@
                             <constraint firstItem="NPv-V3-M4Q" firstAttribute="centerX" secondItem="TqE-Ge-wKD" secondAttribute="centerX" id="dHe-9U-IN4"/>
                             <constraint firstItem="wNX-DT-bGq" firstAttribute="centerX" secondItem="DRa-TQ-L7u" secondAttribute="centerX" id="dl0-Qd-CZq"/>
                             <constraint firstAttribute="trailing" secondItem="TqE-Ge-wKD" secondAttribute="trailing" id="egl-dC-lmk"/>
-                            <constraint firstItem="3av-Ol-yLy" firstAttribute="leading" secondItem="wNX-DT-bGq" secondAttribute="trailing" constant="8" id="lkj-RZ-0B6"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="QG7-df-Hs8">
+                        <barButtonItem key="rightBarButtonItem" title="Change Album" id="DJJ-rE-lRy">
+                            <connections>
+                                <action selector="changeAlbum:" destination="xTe-un-zb9" id="I2n-L3-eCx"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="TqE-Ge-wKD" id="fUG-uK-pyG"/>
                         <outlet property="flowLayout" destination="UGy-2T-gQg" id="zj4-6L-TMB"/>
@@ -177,7 +175,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dnq-r6-vc0" id="A66-Iw-K2u">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>

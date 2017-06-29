@@ -20,6 +20,7 @@ class PhotoAlbumViewController: UIViewController {
     let reuseIdentifier = "PhotoAlbumCollectionViewCell"
     
     var pin: Pin?
+    var photoAlbum: PhotoAlbum?
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     lazy var context: NSManagedObjectContext = self.appDelegate.coreDataStack.context // MOC
@@ -32,6 +33,7 @@ class PhotoAlbumViewController: UIViewController {
         mapView.delegate = self
         
         photoAlbumNameTextField.isHidden = true
+        photoAlbumNameTextField.delegate = self
         
         // Setup CollectionView
         collectionView.dataSource = self
@@ -56,23 +58,44 @@ class PhotoAlbumViewController: UIViewController {
         
         // Setup Button and TextField
         let photoAlbums = pin?.photoAlbums?.allObjects as! [PhotoAlbum]
-        let photoAlbum = photoAlbums[0]
-        photoAlbumNameButton.setTitle(photoAlbum.name, for: .normal)
-        photoAlbumNameTextField.text = photoAlbum.name
+        photoAlbum = photoAlbums[0]
+        photoAlbumNameButton.setTitle(photoAlbum!.name, for: .normal)
+        photoAlbumNameTextField.text = photoAlbum!.name
+        
+    }
     
+    // MARK:- Core Data Function
+    
+    func saveAlbumName() {
+        let name = photoAlbumNameTextField.text
+        photoAlbum?.name = name
+        photoAlbumNameButton.isHidden = !photoAlbumNameButton.isHidden
+        photoAlbumNameButton.setTitle(name, for: .normal)
+        photoAlbumNameTextField.isHidden = !photoAlbumNameTextField.isHidden
     }
     
     // MARK:- IBActions
     
     @IBAction func changeName(_ sender: Any) {
-    }
-
-    @IBAction func changeAlbum(_ sender: Any) {
         photoAlbumNameButton.isHidden = !photoAlbumNameButton.isHidden
         photoAlbumNameTextField.text = photoAlbumNameButton.titleLabel?.text
         photoAlbumNameTextField.isHidden = !photoAlbumNameTextField.isHidden
     }
+
+    @IBAction func changeAlbum(_ sender: Any) {
+    }
     
     @IBAction func loadNewCollection(_ sender: Any) {
+    }
+}
+
+
+// MARK:- PhotoAlbumNameTextField delegate
+
+extension PhotoAlbumViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        saveAlbumName()
+        textField.resignFirstResponder()
+        return true
     }
 }
