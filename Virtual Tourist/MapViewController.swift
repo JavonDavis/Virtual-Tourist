@@ -79,12 +79,12 @@ class MapViewController: UIViewController {
     
     func loadPinsOntoMap(pins: [Pin]) {
         mapView.removeAnnotations(annotations)
-        for pin in pins {
-            addPinToMap(pin: pin)
-        }
+        
+        let _ = pins.map { addPinToMap(pin: $0) }
     }
     
     func addPinToMap(pin: Pin) {
+        print("Lat:\(pin.latitude) - lon:\(pin.longitude)")
         self.mapView.addAnnotation(getAnnotation(pin: pin))
     }
     
@@ -161,7 +161,9 @@ class MapViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showPhotoAlbums" {
             let vc = segue.destination as! PhotoAlbumViewController
-            vc.annotation = selectedAnnotation
+            if let annotation = selectedAnnotation as? MKVisualTouristAnnotation {
+                vc.pin = annotation.pin
+            }
         }
     }
 }

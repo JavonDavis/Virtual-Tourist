@@ -31,6 +31,7 @@
 		8AD063591F04C34A0049134F /* FlickrClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD063581F04C34A0049134F /* FlickrClient.swift */; };
 		8AD0635B1F04C3BB0049134F /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD0635A1F04C3BB0049134F /* Types.swift */; };
 		8AD0635F1F04E0340049134F /* PhotoAlbum+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD0635C1F04E0340049134F /* PhotoAlbum+CoreDataProperties.swift */; };
+		8AD063651F04F8E60049134F /* MKVisualTouristAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD063641F04F8E60049134F /* MKVisualTouristAnnotation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		8AD063581F04C34A0049134F /* FlickrClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrClient.swift; sourceTree = "<group>"; };
 		8AD0635A1F04C3BB0049134F /* Types.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		8AD0635C1F04E0340049134F /* PhotoAlbum+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoAlbum+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8AD063641F04F8E60049134F /* MKVisualTouristAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKVisualTouristAnnotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +178,7 @@
 				8A5CDC201F02CE5D00D9205C /* Travel Locations Map View */,
 				8AD063451F0303B50049134F /* UIViewController+Alert.swift */,
 				8AD0635A1F04C3BB0049134F /* Types.swift */,
+				8AD063641F04F8E60049134F /* MKVisualTouristAnnotation.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				8AD0634A1F0460300049134F /* PhotoAlbumViewController+MapViewDelegate.swift in Sources */,
 				8AD063531F04B5AD0049134F /* Constants.swift in Sources */,
 				8AD0635F1F04E0340049134F /* PhotoAlbum+CoreDataProperties.swift in Sources */,
+				8AD063651F04F8E60049134F /* MKVisualTouristAnnotation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

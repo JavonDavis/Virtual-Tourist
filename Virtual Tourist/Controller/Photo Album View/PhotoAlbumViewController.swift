@@ -20,7 +20,6 @@ class PhotoAlbumViewController: UIViewController {
     let reuseIdentifier = "PhotoAlbumCollectionViewCell"
     
     var pin: Pin?
-    var annotation: MKAnnotation?
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     lazy var context: NSManagedObjectContext = self.appDelegate.coreDataStack.context // MOC
@@ -47,43 +46,13 @@ class PhotoAlbumViewController: UIViewController {
         collectionView.register(UINib(nibName: "PhotoAlbumCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
         
         // Add annotation to the map and focus on it
-        if let annotation = annotation {
+        if let pin = pin {
+            let annotation = getAnnotation(pin: pin)
             mapView.addAnnotation(annotation)
             focus(mapView: mapView, location: annotation.coordinate)
+            
         }
-        
-        // Load the pin from the datab
-        
-        
-    }
     
-    func loadPin(with annotation: MKPointAnnotation){
-        let coordinate = annotation.coordinate
-        let latitude = coordinate.latitude
-        let longitude = coordinate.longitude
-        
-        let predicate = NSPredicate(format: "latitude == %@ AND longitude == %@", latitude, longitude)
-        
-        let pinsFetchRequest: NSFetchRequest<Pin> = Pin.fetchRequest()
-        pinsFetchRequest.predicate = predicate
-        
-        do {
-            let fetchedPins = try context.fetch(pinsFetchRequest)
-            
-            if fetchedPins.count > 0  {
-                pin = fetchedPins[0]
-                print("Lat:\(pin!.latitude) - lon:\(pin!.longitude)")
-            } else {
-                print("no pins found")
-                self.showAlert(title: "Oops!", message: "There was an error loading this pin from the database")
-            }
-            
-        } catch {
-            print("Failed to get Pin")
-            print(error.localizedDescription)
-            self.showAlert(title: "Oops!", message: "There was an error loading this pin from the database")
-        }
-        
     }
     
     // MARK:- IBActions
