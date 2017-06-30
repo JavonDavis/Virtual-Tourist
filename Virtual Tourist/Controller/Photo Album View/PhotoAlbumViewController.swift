@@ -50,7 +50,7 @@ class PhotoAlbumViewController: UIViewController {
         
         // Add annotation to the map and focus on it
         if let pin = pin {
-            let annotation = getAnnotation(pin: pin)
+            let annotation = getAnnotationFromPin(pin: pin)
             mapView.addAnnotation(annotation)
             focus(mapView: mapView, location: annotation.coordinate)
             

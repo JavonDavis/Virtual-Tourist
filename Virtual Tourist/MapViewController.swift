@@ -20,6 +20,8 @@ class MapViewController: UIViewController {
 
     var selectedAnnotation: MKAnnotation?
     
+    var tempAnnotation: MKPointAnnotation? // Annotation shown when user is dragging
+    
     // MARK:- Lifecycle
     
     override func viewDidLoad() {
@@ -84,7 +86,7 @@ class MapViewController: UIViewController {
     
     func addPinToMap(pin: Pin) {
         print("Lat:\(pin.latitude) - lon:\(pin.longitude)")
-        self.mapView.addAnnotation(getAnnotation(pin: pin))
+        self.mapView.addAnnotation(getAnnotationFromPin(pin: pin))
     }
     
     func removePinFromMap(annotation: MKPointAnnotation) {
@@ -99,9 +101,20 @@ class MapViewController: UIViewController {
     }
     
     func handleLongTap(gestureRecognizer: UILongPressGestureRecognizer) {
-        if gestureRecognizer.state == .ended {
-            let location = gestureRecognizer.location(in: mapView)
-            let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
+        let location = gestureRecognizer.location(in: mapView)
+        let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
+        
+        // Handle drop drag and save
+        if gestureRecognizer.state == .began {
+            tempAnnotation = getAnnotationFromCoordinate(coordinate: coordinate)
+            
+            mapView.addAnnotation(tempAnnotation!)
+            
+        } else if gestureRecognizer.state == .changed {
+            tempAnnotation!.coordinate = coordinate // Can Force unwrap since begin must be called before changed
+            
+        } else if gestureRecognizer.state == .ended {
+            mapView.removeAnnotation(tempAnnotation!) // Can Force unwrap since begin must be called before ended
             
             savePin(latitude: coordinate.latitude, longitude: coordinate.longitude)
         }

@@ -10,7 +10,7 @@ import Foundation
 import MapKit
 
 // Returns an annotation from a given Pin
-func getAnnotation(pin: Pin) -> MKVisualTouristAnnotation {
+func getAnnotationFromPin(pin: Pin) -> MKVisualTouristAnnotation {
     
     let lat = CLLocationDegrees(pin.latitude)
     let long = CLLocationDegrees(pin.longitude)
@@ -22,6 +22,18 @@ func getAnnotation(pin: Pin) -> MKVisualTouristAnnotation {
     annotation.title = "\(albumCount) Photo Album\(albumCount == 1 ? "":"s")"
     annotation.coordinate = coordinate
     annotation.pin = pin
+    
+    return annotation
+}
+
+func getAnnotationFromCoordinate(coordinate: CLLocationCoordinate2D) -> MKPointAnnotation {
+    let lat = CLLocationDegrees(coordinate.latitude)
+    let long = CLLocationDegrees(coordinate.longitude)
+    
+    let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+    
+    let annotation = MKPointAnnotation()
+    annotation.coordinate = coordinate
     
     return annotation
 }
