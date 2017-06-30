@@ -30,6 +30,17 @@ extension MapViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        
+        guard !isDeleting else {
+            print("Deleting Pin")
+            
+            let annotation = view.annotation as! MKVisualTouristAnnotation
+            let pin = annotation.pin!
+            
+            context.delete(pin)
+            mapView.removeAnnotation(annotation)
+            return
+        }
         print("Pin Tapped")
         
         selectedAnnotation = view.annotation
