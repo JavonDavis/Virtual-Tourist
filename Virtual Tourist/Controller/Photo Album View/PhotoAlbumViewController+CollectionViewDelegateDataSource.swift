@@ -51,6 +51,11 @@ extension PhotoAlbumViewController: UICollectionViewDelegate {
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             alertController.addAction(okAction)
             present(alertController, animated: true, completion: nil)
+        } else {
+            let photo = photos[row]
+            photos.remove(at: row)
+            context.delete(photo)
+            photoAlbum?.total -= 1
         }
         
         

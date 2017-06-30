@@ -88,9 +88,16 @@ class PhotoAlbumViewController: UIViewController {
         // Setup Button and TextField
         setupPhotoAlbum()
         
+        let photoCount = Int((photoAlbum?.total)!)
+        
+        guard photoCount > 0 else {
+            self.showAlert(title: "No Photos!", message: "Sorry we have no photos for this area")
+            return
+        }
+        
         fetchPhotos()
         
-        if (photoAlbum?.photos?.count)! != Int((photoAlbum?.total)!) { // Descrepancy between photos and the amount that should be there, this could've happened if the app was closed during a background load
+        if !appDelegate.loadingInBackground && (photoAlbum?.photos?.count)! != photoCount { // Descrepancy between photos and the amount that should be there, this could've happened if the app was closed during a background load
             loadNewCollection()
         }
     }

@@ -56,7 +56,12 @@ class AlbumsTableViewController: CoreDataTableViewController {
         let photoCount = Int(photoAlbum.total)
         
         cell.textLabel?.text = photoAlbum.name
-        cell.detailTextLabel?.text = "\(photoCount) photo\(photoCount == 1 ? "":"s")"
+        
+        if (photoAlbum.photos?.count)! != photoCount {
+            cell.detailTextLabel?.text = "Downloading photos for Album..."
+        } else {
+            cell.detailTextLabel?.text = "\(photoCount) photo\(photoCount == 1 ? "":"s")"
+        }
         
         return cell
     }
@@ -71,7 +76,7 @@ class AlbumsTableViewController: CoreDataTableViewController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         let photoAlbum = PhotoAlbum(name: "Photo album \(albumCount)", context: appDelegate.coreDataStack.context)
-        photoAlbum.pin = pin
+        photoAlbum.pin = pin!
         
         appDelegate.loadImagesInBackground(pin: pin!, photoAlbumId: photoAlbum.objectID)
     }

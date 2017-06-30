@@ -14,9 +14,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     let coreDataStack = CoreDataStack(modelName: "TouristModel")! // i.e. NSManagedObjectModel, NSManagedObjectContext, NSPersistentStore, NSPersistentStoreCoordinator
+    var loadingInBackground = false
     
     func loadImagesInBackground(pin: Pin, photoAlbumId objectId: NSManagedObjectID) { // Thought it best to put it here
-        
+        loadingInBackground = true
         let latitude = pin.latitude
         let longitude = pin.longitude
         
@@ -54,6 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         
                         
                     }
+                    self.loadingInBackground = false
                 }
             })
             
