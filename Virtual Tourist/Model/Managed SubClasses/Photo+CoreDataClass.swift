@@ -12,13 +12,12 @@ import CoreData
 @objc(Photo)
 public class Photo: NSManagedObject {
     
-    convenience init(photoId: String, imageData: NSData, context: NSManagedObjectContext) {
+    convenience init(imageData: NSData, context: NSManagedObjectContext) {
         
         let entityName = Constants.EntityNames.photoEntityName
         
         if let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) {
             self.init(entity: entity, insertInto: context)
-            self.photoId = photoId
             self.imageData = imageData
             self.createdAt = Date()
         } else {

@@ -33,10 +33,15 @@ class PhotoAlbumViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Notify of updates in the Backgrouund
+        
         NotificationCenter.default.addObserver(forName: .NSManagedObjectContextObjectsDidChange, object: nil, queue: nil) { note in
+            self.setupPhotoAlbum()
             self.fetchPhotos()
 
         }
+        
+        // Setup Map
         
         mapView.delegate = self
         
@@ -64,9 +69,7 @@ class PhotoAlbumViewController: UIViewController {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
+    func setupPhotoAlbum() {
         // Setup Button and TextField
         if let photoAlbum = photoAlbum {
             photoAlbumNameButton.setTitle(photoAlbum.name, for: .normal)
@@ -77,8 +80,19 @@ class PhotoAlbumViewController: UIViewController {
             photoAlbumNameButton.setTitle(photoAlbum!.name, for: .normal)
             photoAlbumNameTextField.text = photoAlbum!.name
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Setup Button and TextField
+        setupPhotoAlbum()
         
         fetchPhotos()
+        
+        if (photoAlbum?.photos?.count)! != Int((photoAlbum?.total)!) { // Descrepancy between photos and the amount that should be there, this could've happened if the app was closed during a background load
+            loadNewCollection()
+        }
     }
     
     // MARK:- Core Data Function
@@ -87,7 +101,7 @@ class PhotoAlbumViewController: UIViewController {
         let fetchRequest: NSFetchRequest<Photo> = Photo.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
         
-        let predicate = NSPredicate(format: "%@ in photoAlbums", argumentArray: [photoAlbum!])
+        let predicate = NSPredicate(format: "photoAlbum = %@", argumentArray: [photoAlbum!])
         fetchRequest.predicate = predicate
         
         do {
@@ -101,6 +115,11 @@ class PhotoAlbumViewController: UIViewController {
     }
     func saveAlbumName() {
         let name = photoAlbumNameTextField.text
+        
+        guard name != "" else {
+            self.showAlert(title: "Name cannot be empty", message: "Album name cannot be empty")
+            return
+        }
         photoAlbum?.name = name
         photoAlbum?.updatedAt = Date()
         pin?.updatedAt = Date()
@@ -110,6 +129,12 @@ class PhotoAlbumViewController: UIViewController {
         photoAlbumNameTextField.isHidden = !photoAlbumNameTextField.isHidden
     }
     
+    func deletePhotos() {
+        for photo in photos {
+            self.context.delete(photo)
+        }
+        photos = []
+    }
     // MARK:- IBActions
     
     @IBAction func changeName(_ sender: Any) {
@@ -122,8 +147,12 @@ class PhotoAlbumViewController: UIViewController {
         performSegue(withIdentifier: "showAllAlbums", sender: self)
     }
     
-    @IBAction func loadNewCollection(_ sender: Any) {
+    @IBAction func loadNewCollection() {
+        deletePhotos()
+        appDelegate.loadImagesInBackground(pin: pin!, photoAlbumId: photoAlbum!.objectID)
     }
+    
+    // MARK:- Prepare for Segue
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showAllAlbums" {

@@ -26,8 +26,12 @@ extension PhotoAlbumViewController: UICollectionViewDataSource {
         if row < photos.count {
             cell.loadingIndicator.stopAnimating()
             let photo = photos[row]
-            cell.photoImageView.image = UIImage(data: photo.imageData! as Data)
+            if let imageData = photo.imageData as Data? {
+                cell.photoImageView.image = UIImage(data: imageData)
+            }
+            
         } else {
+            cell.photoImageView.image = UIImage(named: "placeholder")
             cell.loadingIndicator.startAnimating()
         }
         
@@ -41,15 +45,11 @@ extension PhotoAlbumViewController: UICollectionViewDelegate {
         
         let row = indexPath.row
         
-        if row < photos.count {
-            let alertController = UIAlertController(title: photoAlbum!.name, message: "", preferredStyle: .alert)
-            let photo = photos[row]
-            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-            imageView.contentMode = .center
-            imageView.image = UIImage(data: photo.imageData! as Data)
-            present(alertController, animated: true, completion: nil)
-        } else {
+        if row >= photos.count {
             let alertController = UIAlertController(title: photoAlbum!.name, message: "Image still loading", preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(okAction)
             present(alertController, animated: true, completion: nil)
         }
         

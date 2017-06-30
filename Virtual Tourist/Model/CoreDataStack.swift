@@ -131,6 +131,7 @@ extension CoreDataStack {
             
             if self.context.hasChanges {
                 do {
+                    try self.backgroundContext.save() // Save backgroud data as well
                     try self.context.save()
                 } catch {
                     fatalError("Error while saving main context: \(error)")

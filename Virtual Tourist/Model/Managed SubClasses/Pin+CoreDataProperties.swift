@@ -2,7 +2,7 @@
 //  Pin+CoreDataProperties.swift
 //  Virtual Tourist
 //
-//  Created by Javon Davis on 29/06/2017.
+//  Created by Javon Davis on 30/06/2017.
 //  Copyright © 2017 Javon Davis. All rights reserved.
 //
 

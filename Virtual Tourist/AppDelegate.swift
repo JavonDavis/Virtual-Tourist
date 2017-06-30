@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,11 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     let coreDataStack = CoreDataStack(modelName: "TouristModel")! // i.e. NSManagedObjectModel, NSManagedObjectContext, NSPersistentStore, NSPersistentStoreCoordinator
     
-    func loadImagesInBackground(photoAlbum: PhotoAlbum) { // Thought it best to put it here
-        let pin = photoAlbum.pin
+    func loadImagesInBackground(pin: Pin, photoAlbumId objectId: NSManagedObjectID) { // Thought it best to put it here
         
-        let latitude = pin!.latitude
-        let longitude = pin!.longitude
+        let latitude = pin.latitude
+        let longitude = pin.longitude
         
         let flickrClient = FlickrClient.shared
         
@@ -32,27 +32,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print(urlObjects!.count)
             
             let numberOfPhotos = min(21, urlObjects!.count)
-            photoAlbum.total = Int16(numberOfPhotos)
+        
+            print("Loading images in Background")
+            
+            let urlObjectsToLoad = urlObjects!.choose(Int(numberOfPhotos))
             
             self.coreDataStack.performBackgroundBatchOperation({ workerContext in
-                print("Loading images in Background")
                 
-                let urlObjectsToLoad = urlObjects!.choose(Int(photoAlbum.total))
-                
-                for urlObject in urlObjectsToLoad {
-                    let url = urlObject[Constants.Flickr.ResponseKeys.mediumURL]
-                    let photoId = urlObject["id"]
-                    
-                    print(url!)
-                    
-                    let imageURL = URL(string: url as! String)
-                    if let imageData = NSData(contentsOf: imageURL!) {
-                        let photo = Photo(photoId: photoId as! String, imageData: imageData, context: workerContext)
-                        photo.addToPhotoAlbums(photoAlbum)
+                if let photoAlbum = workerContext.object(with: objectId) as? PhotoAlbum { // Get the photo Album using this same context
+                    photoAlbum.total = Int16(numberOfPhotos)
+                    for urlObject in urlObjectsToLoad {
+                        let url = urlObject[Constants.Flickr.ResponseKeys.mediumURL]
+                        
+                        print(url!)
+                        
+                        let imageURL = URL(string: url as! String)
+                        if let imageData = NSData(contentsOf: imageURL!) {
+                            let photo = Photo(imageData: imageData, context: workerContext)
+                            photo.photoAlbum = photoAlbum
+                        }
+                        
+                        
                     }
-                    
                 }
             })
+            
         })
         
     }

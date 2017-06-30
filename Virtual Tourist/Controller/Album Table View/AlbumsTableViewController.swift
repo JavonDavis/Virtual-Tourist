@@ -53,7 +53,7 @@ class AlbumsTableViewController: CoreDataTableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AlbumsTableViewCell", for: indexPath)
 
         let photoAlbum = fetchedResultsController?.object(at: indexPath) as! PhotoAlbum
-        let photoCount = photoAlbum.photos!.count
+        let photoCount = Int(photoAlbum.total)
         
         cell.textLabel?.text = photoAlbum.name
         cell.detailTextLabel?.text = "\(photoCount) photo\(photoCount == 1 ? "":"s")"
@@ -73,7 +73,7 @@ class AlbumsTableViewController: CoreDataTableViewController {
         let photoAlbum = PhotoAlbum(name: "Photo album \(albumCount)", context: appDelegate.coreDataStack.context)
         photoAlbum.pin = pin
         
-        appDelegate.loadImagesInBackground(photoAlbum: photoAlbum)
+        appDelegate.loadImagesInBackground(pin: pin!, photoAlbumId: photoAlbum.objectID)
     }
     
     // MARK:- TableView Editing

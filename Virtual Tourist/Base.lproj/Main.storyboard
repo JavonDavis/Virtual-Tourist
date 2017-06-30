@@ -121,7 +121,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="New Collection"/>
                                 <connections>
-                                    <action selector="loadNewCollection:" destination="xTe-un-zb9" eventType="touchUpInside" id="5wP-dp-kQ3"/>
+                                    <action selector="loadNewCollection" destination="xTe-un-zb9" eventType="touchUpInside" id="lky-oE-M4a"/>
                                 </connections>
                             </button>
                         </subviews>

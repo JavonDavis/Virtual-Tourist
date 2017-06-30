@@ -137,12 +137,14 @@ class MapViewController: UIViewController {
     }
     
     func savePin(latitude: Double, longitude: Double) {
+        let coreDataStack = appDelegate.coreDataStack
         let pin = Pin(latitude: latitude, longitde: longitude, context: context)
         
-        let photoAlbum = PhotoAlbum(name: "Photo Album 1", context: context)
+        let photoAlbum = PhotoAlbum(name: "Photo Album 0", context: context)
         photoAlbum.pin = pin
-        addPinToMap(pin: pin)
-        appDelegate.loadImagesInBackground(photoAlbum: photoAlbum)
+        self.addPinToMap(pin: pin)
+
+        self.appDelegate.loadImagesInBackground(pin: pin, photoAlbumId: photoAlbum.objectID)
     }
     
     // MARK:- Load Flickr Response 

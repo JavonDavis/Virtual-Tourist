@@ -18,8 +18,8 @@ extension PhotoAlbum {
 
     @NSManaged public var createdAt: Date?
     @NSManaged public var name: String?
-    @NSManaged public var updatedAt: Date?
     @NSManaged public var total: Int16
+    @NSManaged public var updatedAt: Date?
     @NSManaged public var photos: NSSet?
     @NSManaged public var pin: Pin?
 
