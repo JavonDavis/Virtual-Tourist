@@ -21,6 +21,8 @@
 		8A5CDC451F02F9A300D9205C /* PhotoAlbum+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CDC3F1F02F9A300D9205C /* PhotoAlbum+CoreDataClass.swift */; };
 		8A5CDC481F02F9B800D9205C /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CDC471F02F9B800D9205C /* CoreDataStack.swift */; };
 		8A5CDC4C1F03000A00D9205C /* Pin+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5CDC4A1F03000A00D9205C /* Pin+CoreDataProperties.swift */; };
+		8ACF12D11F0569E200CEF927 /* AlbumsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACF12D01F0569E200CEF927 /* AlbumsTableViewController.swift */; };
+		8ACF12D31F0587B700CEF927 /* CoreDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACF12D21F0587B700CEF927 /* CoreDataTableViewController.swift */; };
 		8AD063461F0303B50049134F /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD063451F0303B50049134F /* UIViewController+Alert.swift */; };
 		8AD063481F0307DF0049134F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD063471F0307DF0049134F /* Utils.swift */; };
 		8AD0634A1F0460300049134F /* PhotoAlbumViewController+MapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD063491F0460300049134F /* PhotoAlbumViewController+MapViewDelegate.swift */; };
@@ -63,6 +65,8 @@
 		8A5CDC3F1F02F9A300D9205C /* PhotoAlbum+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoAlbum+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8A5CDC471F02F9B800D9205C /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		8A5CDC4A1F03000A00D9205C /* Pin+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Pin+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8ACF12D01F0569E200CEF927 /* AlbumsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumsTableViewController.swift; sourceTree = "<group>"; };
+		8ACF12D21F0587B700CEF927 /* CoreDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTableViewController.swift; sourceTree = "<group>"; };
 		8AD063451F0303B50049134F /* UIViewController+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		8AD063471F0307DF0049134F /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		8AD063491F0460300049134F /* PhotoAlbumViewController+MapViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoAlbumViewController+MapViewDelegate.swift"; sourceTree = "<group>"; };
@@ -176,6 +180,8 @@
 		8A5CDC211F02CE8A00D9205C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				8ACF12D21F0587B700CEF927 /* CoreDataTableViewController.swift */,
+				8ACF12CF1F0569C400CEF927 /* Album Table View */,
 				8AD063561F04C30D0049134F /* Network */,
 				8A5CDC221F02D6BF00D9205C /* Photo Album View */,
 				8A5CDC201F02CE5D00D9205C /* Travel Locations Map View */,
@@ -207,6 +213,14 @@
 				8AD0635C1F04E0340049134F /* PhotoAlbum+CoreDataProperties.swift */,
 			);
 			path = "Managed SubClasses";
+			sourceTree = "<group>";
+		};
+		8ACF12CF1F0569C400CEF927 /* Album Table View */ = {
+			isa = PBXGroup;
+			children = (
+				8ACF12D01F0569E200CEF927 /* AlbumsTableViewController.swift */,
+			);
+			path = "Album Table View";
 			sourceTree = "<group>";
 		};
 		8AD0634B1F047C380049134F /* View */ = {
@@ -332,7 +346,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8ACF12D11F0569E200CEF927 /* AlbumsTableViewController.swift in Sources */,
 				8A5CDC421F02F9A300D9205C /* Photo+CoreDataProperties.swift in Sources */,
+				8ACF12D31F0587B700CEF927 /* CoreDataTableViewController.swift in Sources */,
 				8AD063511F04AA950049134F /* PhotoAlbumViewController+CollectionViewDelegate.swift in Sources */,
 				8A5CDC481F02F9B800D9205C /* CoreDataStack.swift in Sources */,
 				8AD0635B1F04C3BB0049134F /* Types.swift in Sources */,

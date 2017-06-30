@@ -19,7 +19,6 @@ class MapViewController: UIViewController {
     lazy var context: NSManagedObjectContext = self.appDelegate.coreDataStack.context // MOC
 
     var selectedAnnotation: MKAnnotation?
-    var annotations = [MKPointAnnotation]()
     
     // MARK:- Lifecycle
     
@@ -33,13 +32,13 @@ class MapViewController: UIViewController {
         
         // Detect Long Taps on the Map
         addLongTapGestureRecogniser()
-        
-        // Load the pins from PersistentStore
-        fetchPins()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // Load the pins from PersistentStore
+        fetchPins()
     }
     
     // MARK:- Mapview UserDefaults
@@ -78,7 +77,7 @@ class MapViewController: UIViewController {
     // MARK:- MapView Functions
     
     func loadPinsOntoMap(pins: [Pin]) {
-        mapView.removeAnnotations(annotations)
+        removeAnnotations(mapView: mapView)
         
         let _ = pins.map { addPinToMap(pin: $0) }
     }

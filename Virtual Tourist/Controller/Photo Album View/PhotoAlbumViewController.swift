@@ -45,7 +45,7 @@ class PhotoAlbumViewController: UIViewController {
         flowLayout.minimumLineSpacing = space
         flowLayout.itemSize = CGSize(width: dimension, height: dimension)
         
-        // Register Cell class
+        // Register Custom Cell class
         collectionView.register(UINib(nibName: "PhotoAlbumCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
         
         // Add annotation to the map and focus on it
@@ -55,13 +55,21 @@ class PhotoAlbumViewController: UIViewController {
             focus(mapView: mapView, location: annotation.coordinate)
             
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         // Setup Button and TextField
-        let photoAlbums = pin?.photoAlbums?.allObjects as! [PhotoAlbum]
-        photoAlbum = photoAlbums[0]
-        photoAlbumNameButton.setTitle(photoAlbum!.name, for: .normal)
-        photoAlbumNameTextField.text = photoAlbum!.name
-        
+        if let photoAlbum = photoAlbum {
+            photoAlbumNameButton.setTitle(photoAlbum.name, for: .normal)
+            photoAlbumNameTextField.text = photoAlbum.name
+        } else {
+            let photoAlbums = pin?.photoAlbums?.allObjects as! [PhotoAlbum]
+            photoAlbum = photoAlbums[0]
+            photoAlbumNameButton.setTitle(photoAlbum!.name, for: .normal)
+            photoAlbumNameTextField.text = photoAlbum!.name
+        }
     }
     
     // MARK:- Core Data Function
@@ -69,6 +77,9 @@ class PhotoAlbumViewController: UIViewController {
     func saveAlbumName() {
         let name = photoAlbumNameTextField.text
         photoAlbum?.name = name
+        photoAlbum?.updatedAt = Date()
+        pin?.updatedAt = Date()
+        
         photoAlbumNameButton.isHidden = !photoAlbumNameButton.isHidden
         photoAlbumNameButton.setTitle(name, for: .normal)
         photoAlbumNameTextField.isHidden = !photoAlbumNameTextField.isHidden
@@ -83,12 +94,24 @@ class PhotoAlbumViewController: UIViewController {
     }
 
     @IBAction func changeAlbum(_ sender: Any) {
+        performSegue(withIdentifier: "showAllAlbums", sender: self)
     }
     
     @IBAction func loadNewCollection(_ sender: Any) {
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showAllAlbums" {
+            if let vc = segue.destination as? AlbumsTableViewController {
+                vc.photoAlbumDelegate = self // Set the delegate for receiving info from child vc
+                
+                // Pass the vc data about the current view
+                vc.pin = pin
+                vc.currentAlbum = photoAlbum
+            }
+        }
+    }
 }
-
 
 // MARK:- PhotoAlbumNameTextField delegate
 
@@ -97,5 +120,14 @@ extension PhotoAlbumViewController: UITextFieldDelegate {
         saveAlbumName()
         textField.resignFirstResponder()
         return true
+    }
+}
+
+// MARK:- PhotoAlbum Delegat see AlbumsViewController for definition
+
+extension PhotoAlbumViewController: PhotoAlbumDelegate {
+    
+    func setAlbum(album: PhotoAlbum?) {
+        photoAlbum = album
     }
 }

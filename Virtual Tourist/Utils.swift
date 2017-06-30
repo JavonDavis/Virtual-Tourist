@@ -26,6 +26,12 @@ func getAnnotation(pin: Pin) -> MKVisualTouristAnnotation {
     return annotation
 }
 
+func removeAnnotations(mapView: MKMapView) {
+    for _annotation in mapView.annotations {
+        mapView.removeAnnotation(_annotation)
+    }
+}
+
 // Returns True if the App has launched before, false otherwise
 func appHasLaunchedBefore() -> Bool {
     if UserDefaults.standard.bool(forKey: "hasLaunchedBefore") {

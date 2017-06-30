@@ -155,28 +155,44 @@
                         <outlet property="mapView" destination="DRa-TQ-L7u" id="yU7-gA-DZh"/>
                         <outlet property="photoAlbumNameButton" destination="F8Y-EJ-7M3" id="nc6-UD-RU3"/>
                         <outlet property="photoAlbumNameTextField" destination="wNX-DT-bGq" id="1iB-fv-iAA"/>
-                        <segue destination="asJ-c5-Vr9" kind="presentation" identifier="showAllAlbums" id="uyt-zl-FyJ"/>
+                        <segue destination="asJ-c5-Vr9" kind="show" identifier="showAllAlbums" id="uyt-zl-FyJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dmH-PT-1dB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1992.753623188406" y="138.58695652173915"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Albums Table View Controller-->
         <scene sceneID="odl-g1-cXc">
             <objects>
-                <tableViewController id="asJ-c5-Vr9" sceneMemberID="viewController">
+                <tableViewController id="asJ-c5-Vr9" customClass="AlbumsTableViewController" customModule="Virtual_Tourist" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="aQ9-AH-b7m">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="photoAlbumTableViewCell" id="Dnq-r6-vc0">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="AlbumsTableViewCell" textLabel="HqW-Gm-r0O" detailTextLabel="MTw-MD-tfD" rowHeight="90" style="IBUITableViewCellStyleSubtitle" id="Dnq-r6-vc0">
+                                <rect key="frame" x="0.0" y="28" width="414" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dnq-r6-vc0" id="A66-Iw-K2u">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="381" height="89.666666666666671"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HqW-Gm-r0O">
+                                            <rect key="frame" x="15" y="28" width="33.333333333333336" height="20.333333333333332"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MTw-MD-tfD">
+                                            <rect key="frame" x="14.999999999999996" y="48.333333333333329" width="43.666666666666664" height="14.333333333333334"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
