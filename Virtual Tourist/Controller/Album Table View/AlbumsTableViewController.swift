@@ -68,8 +68,12 @@ class AlbumsTableViewController: CoreDataTableViewController {
     
     func addAlbum() {
         let albumCount = fetchedResultsController!.fetchedObjects!.count
-        let photoAlbum = PhotoAlbum(name: "Photo Album \(albumCount)", context: (fetchedResultsController?.managedObjectContext)!)
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        let photoAlbum = PhotoAlbum(name: "Photo album \(albumCount)", context: appDelegate.coreDataStack.context)
         photoAlbum.pin = pin
+        
+        appDelegate.loadImagesInBackground(photoAlbum: photoAlbum)
     }
     
     // MARK:- TableView Editing

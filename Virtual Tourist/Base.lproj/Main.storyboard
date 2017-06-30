@@ -47,7 +47,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Virtual Tourist" id="e3q-Qk-7XH">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="6NF-Vm-fxV">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="6NF-Vm-fxV">
                             <connections>
                                 <action selector="editPins:" destination="BYZ-38-t0r" id="wd2-1X-VNv"/>
                             </connections>

@@ -2,7 +2,7 @@
 //  PhotoAlbum+CoreDataProperties.swift
 //  Virtual Tourist
 //
-//  Created by Javon Davis on 29/06/2017.
+//  Created by Javon Davis on 30/06/2017.
 //  Copyright © 2017 Javon Davis. All rights reserved.
 //
 
@@ -19,6 +19,7 @@ extension PhotoAlbum {
     @NSManaged public var createdAt: Date?
     @NSManaged public var name: String?
     @NSManaged public var updatedAt: Date?
+    @NSManaged public var total: Int16
     @NSManaged public var photos: NSSet?
     @NSManaged public var pin: Pin?
 

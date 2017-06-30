@@ -67,3 +67,24 @@ func focus(mapView: MKMapView, location: CLLocationCoordinate2D) {
     let region: MKCoordinateRegion = MKCoordinateRegionMake(location, span)
     mapView.setRegion(region, animated: true)
 }
+
+extension Array { // Useful Array extension to help pick a random x elements from an array
+    
+    // Returns an array containing this sequence shuffled
+    var shuffled: Array {
+        var elements = self
+        return elements.shuffle()
+    }
+    
+    // Shuffles this sequence in place
+    @discardableResult
+    mutating func shuffle() -> Array {
+        indices.dropLast().forEach {
+            guard case let index = Int(arc4random_uniform(UInt32(count - $0))) + $0, index != $0 else { return }
+            swap(&self[$0], &self[index])
+        }
+        return self
+    }
+    
+    func choose(_ n: Int) -> Array { return Array(shuffled.prefix(n)) }
+}

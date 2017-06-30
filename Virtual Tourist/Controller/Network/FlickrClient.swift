@@ -68,7 +68,7 @@ class FlickrClient {
         })
     }
     
-    func JSONDeserialize(jsonData: Data) throws -> Dictionary<String, AnyObject> { // For Parsing a JSONObject
+    private func JSONDeserialize(jsonData: Data) throws -> Dictionary<String, AnyObject> { // For Parsing a JSONObject
         return try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as! Dictionary<String, AnyObject>
     }
     
@@ -98,7 +98,7 @@ class FlickrClient {
         }
     }
     
-    func performGetRequestOn(url urlString: String, with parameters: [String:AnyObject], completion: @escaping SessionResponse) {
+    private func performGetRequestOn(url urlString: String, with parameters: [String:AnyObject], completion: @escaping SessionResponse) {
         
         // Build the URL
         let urlParametersString = escapedParameters(parameters)

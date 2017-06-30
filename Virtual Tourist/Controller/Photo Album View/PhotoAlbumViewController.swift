@@ -21,14 +21,22 @@ class PhotoAlbumViewController: UIViewController {
     
     var pin: Pin?
     var photoAlbum: PhotoAlbum?
+    var photos = [Photo]()
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     lazy var context: NSManagedObjectContext = self.appDelegate.coreDataStack.context // MOC
+     
+    
     
     // MARK:- Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(forName: .NSManagedObjectContextObjectsDidChange, object: nil, queue: nil) { note in
+            self.fetchPhotos()
+
+        }
         
         mapView.delegate = self
         
@@ -53,7 +61,6 @@ class PhotoAlbumViewController: UIViewController {
             let annotation = getAnnotationFromPin(pin: pin)
             mapView.addAnnotation(annotation)
             focus(mapView: mapView, location: annotation.coordinate)
-            
         }
     }
     
@@ -70,10 +77,28 @@ class PhotoAlbumViewController: UIViewController {
             photoAlbumNameButton.setTitle(photoAlbum!.name, for: .normal)
             photoAlbumNameTextField.text = photoAlbum!.name
         }
+        
+        fetchPhotos()
     }
     
     // MARK:- Core Data Function
     
+    func fetchPhotos() {
+        let fetchRequest: NSFetchRequest<Photo> = Photo.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
+        
+        let predicate = NSPredicate(format: "%@ in photoAlbums", argumentArray: [photoAlbum!])
+        fetchRequest.predicate = predicate
+        
+        do {
+            photos = try context.fetch(fetchRequest)
+            self.collectionView.reloadData()
+        } catch {
+            print("Failed to get Photos")
+            print(error.localizedDescription)
+            self.showAlert(title: "Oops!", message: "There was an error loading your photos")
+        }
+    }
     func saveAlbumName() {
         let name = photoAlbumNameTextField.text
         photoAlbum?.name = name
