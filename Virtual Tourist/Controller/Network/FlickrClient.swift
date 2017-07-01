@@ -77,45 +77,6 @@ class FlickrClient {
         let flickrClient = FlickrClient.shared
         
         flickrClient.getPhotoURLs(latitude: latitude, longitude: longitude, completion: completion)
-        
-        
-//        flickrClient.getPhotoURLs(latitude: latitude, longitude: longitude, completion: { urlObjects, error in
-//            print("Back from Flickr")
-//            guard error == nil else {
-//                print(error!.localizedDescription)
-//                return
-//            }
-//            
-//            print(urlObjects!.count)
-//            
-//            let numberOfPhotos = min(21, urlObjects!.count)
-//            
-//            let urlObjectsToLoad = urlObjects!.choose(Int(numberOfPhotos))
-//            
-//            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//            let coreDataStack = appDelegate.coreDataStack
-//            
-//            coreDataStack.performBackgroundBatchOperation({ workerContext in
-//                
-//                if let photoAlbum = workerContext.object(with: objectId) as? PhotoAlbum { // Get the photo Album using this same context
-//                    photoAlbum.total = Int16(numberOfPhotos)
-//                    for urlObject in urlObjectsToLoad {
-//                        let url = urlObject[Constants.Flickr.ResponseKeys.mediumURL]
-//                        
-//                        print(url!)
-//                        
-//                        let imageURL = URL(string: url as! String)
-//                        if let imageData = NSData(contentsOf: imageURL!) {
-//                            let photo = Photo(imageData: imageData, context: workerContext)
-//                            photo.photoAlbum = photoAlbum
-//                        }
-//                        
-//                        
-//                    }
-//                }
-//            })
-//            
-//        })
 
     }
     
