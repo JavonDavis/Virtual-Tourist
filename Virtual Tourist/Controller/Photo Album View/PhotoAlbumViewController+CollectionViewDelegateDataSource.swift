@@ -24,10 +24,22 @@ extension PhotoAlbumViewController: UICollectionViewDataSource {
         let row = indexPath.row
         
         if row < photos.count {
-            cell.loadingIndicator.stopAnimating()
             let photo = photos[row]
-            if let imageData = photo.imageData as Data? {
-                cell.photoImageView.image = UIImage(data: imageData)
+            if photo.imageData == nil {
+                FlickrClient.shared.performGetRequestOn(url: photo.url!, with: [:], completion: { data, error in
+                    print("Loaded picture from url")
+                    if let imageData = data {
+                        
+                        performUIUpdatesOnMain {
+                            photo.imageData = imageData as NSData
+                            cell.photoImageView.image = UIImage(data: imageData)
+                            cell.loadingIndicator.stopAnimating()
+                        }
+                    }
+                })
+            } else {
+                cell.photoImageView.image = UIImage(data: photo.imageData! as Data)
+                cell.loadingIndicator.stopAnimating()
             }
             
         } else {
@@ -55,7 +67,9 @@ extension PhotoAlbumViewController: UICollectionViewDelegate {
             let photo = photos[row]
             photos.remove(at: row)
             context.delete(photo)
+            appDelegate.coreDataStack.save()
             photoAlbum?.total -= 1
+            collectionView.reloadData()
         }
         
         

@@ -12,13 +12,13 @@ import CoreData
 @objc(Photo)
 public class Photo: NSManagedObject {
     
-    convenience init(imageData: NSData, context: NSManagedObjectContext) {
+    convenience init(url: String, context: NSManagedObjectContext) {
         
         let entityName = Constants.EntityNames.photoEntityName
         
         if let entity = NSEntityDescription.entity(forEntityName: entityName, in: context) {
             self.init(entity: entity, insertInto: context)
-            self.imageData = imageData
+            self.url = url
             self.createdAt = Date()
         } else {
             fatalError("Unable to find Entity name: \(entityName)")

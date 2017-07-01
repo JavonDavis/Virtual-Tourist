@@ -2,7 +2,8 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16F73" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="v1">
     <entity name="Photo" representedClassName="Photo" syncable="YES">
         <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="imageData" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="imageData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="url" attributeType="String" syncable="YES"/>
         <relationship name="photoAlbum" maxCount="1" deletionRule="Nullify" destinationEntity="PhotoAlbum" inverseName="photos" inverseEntity="PhotoAlbum" syncable="YES"/>
     </entity>
     <entity name="PhotoAlbum" representedClassName="PhotoAlbum" syncable="YES">
@@ -21,7 +22,7 @@
         <relationship name="photoAlbums" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PhotoAlbum" inverseName="pin" inverseEntity="PhotoAlbum" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Photo" positionX="124" positionY="-3" width="128" height="90"/>
+        <element name="Photo" positionX="124" positionY="-3" width="128" height="105"/>
         <element name="PhotoAlbum" positionX="27" positionY="18" width="128" height="135"/>
         <element name="Pin" positionX="-63" positionY="-18" width="128" height="120"/>
     </elements>

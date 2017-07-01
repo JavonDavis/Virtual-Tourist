@@ -32,15 +32,7 @@ class PhotoAlbumViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Notify of updates in the Backgrouund
-        
-        NotificationCenter.default.addObserver(forName: .NSManagedObjectContextObjectsDidChange, object: nil, queue: nil) { note in
-            self.setupPhotoAlbum()
-            self.fetchPhotos()
 
-        }
-        
         // Setup Map
         
         mapView.delegate = self
@@ -96,13 +88,29 @@ class PhotoAlbumViewController: UIViewController {
         }
         
         fetchPhotos()
-        
-        if !appDelegate.loadingInBackground && (photoAlbum?.photos?.count)! != photoCount { // Descrepancy between photos and the amount that should be there, this could've happened if the app was closed during a background load
-            loadNewCollection()
-        }
     }
     
     // MARK:- Core Data Function
+    
+    func createPhotosFromURLs(urls: [String]?, error: Error?) {
+        guard error == nil else {
+            self.showAlert(title: "Error loading Photos from Server", message: "There was an error dowloading photos for this pin.")
+            return
+        }
+        
+        let numberOfPhotos = min(21, urls!.count)
+        let randomURLs = urls!.choose(Int(numberOfPhotos))
+        
+        for url in randomURLs {
+            
+            photoAlbum!.total = Int16(numberOfPhotos)
+
+            let photo = Photo(url: url, context: context)
+            photo.photoAlbum = photoAlbum
+            photos.append(photo)
+        }
+        collectionView.reloadData()
+    }
     
     func fetchPhotos() {
         let fetchRequest: NSFetchRequest<Photo> = Photo.fetchRequest()
@@ -113,7 +121,11 @@ class PhotoAlbumViewController: UIViewController {
         
         do {
             photos = try context.fetch(fetchRequest)
-            self.collectionView.reloadData()
+            
+            if photoAlbum!.photos!.count != Int((photoAlbum?.total)!) { // Discrepany in the number of photos that should be there and what is actually there
+                FlickrClient.shared.loadImageURLs(pin: pin!, completion: createPhotosFromURLs)
+            }
+            collectionView.reloadData()
         } catch {
             print("Failed to get Photos")
             print(error.localizedDescription)
@@ -138,8 +150,9 @@ class PhotoAlbumViewController: UIViewController {
     
     func deletePhotos() {
         for photo in photos {
-            self.context.delete(photo)
+            context.delete(photo)
         }
+        appDelegate.coreDataStack.save()
         photos = []
     }
     // MARK:- IBActions
@@ -156,7 +169,8 @@ class PhotoAlbumViewController: UIViewController {
     
     @IBAction func loadNewCollection() {
         deletePhotos()
-        appDelegate.loadImagesInBackground(pin: pin!, photoAlbumId: photoAlbum!.objectID)
+        
+        fetchPhotos()
     }
     
     // MARK:- Prepare for Segue

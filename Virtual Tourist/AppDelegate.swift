@@ -14,54 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     let coreDataStack = CoreDataStack(modelName: "TouristModel")! // i.e. NSManagedObjectModel, NSManagedObjectContext, NSPersistentStore, NSPersistentStoreCoordinator
-    var loadingInBackground = false
-    
-    func loadImagesInBackground(pin: Pin, photoAlbumId objectId: NSManagedObjectID) { // Thought it best to put it here
-        loadingInBackground = true
-        let latitude = pin.latitude
-        let longitude = pin.longitude
-        
-        let flickrClient = FlickrClient.shared
-        
-        flickrClient.getPhotoURLs(latitude: latitude, longitude: longitude, completion: { urlObjects, error in
-            print("Back from Flickr")
-            guard error == nil else {
-                print(error!.localizedDescription)
-                return
-            }
-            
-            print(urlObjects!.count)
-            
-            let numberOfPhotos = min(21, urlObjects!.count)
-        
-            print("Loading images in Background")
-            
-            let urlObjectsToLoad = urlObjects!.choose(Int(numberOfPhotos))
-            
-            self.coreDataStack.performBackgroundBatchOperation({ workerContext in
-                
-                if let photoAlbum = workerContext.object(with: objectId) as? PhotoAlbum { // Get the photo Album using this same context
-                    photoAlbum.total = Int16(numberOfPhotos)
-                    for urlObject in urlObjectsToLoad {
-                        let url = urlObject[Constants.Flickr.ResponseKeys.mediumURL]
-                        
-                        print(url!)
-                        
-                        let imageURL = URL(string: url as! String)
-                        if let imageData = NSData(contentsOf: imageURL!) {
-                            let photo = Photo(imageData: imageData, context: workerContext)
-                            photo.photoAlbum = photoAlbum
-                        }
-                        
-                        
-                    }
-                    self.loadingInBackground = false
-                }
-            })
-            
-        })
-        
-    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         coreDataStack.autoSave(60)

@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import UIKit
+import CoreData
 
 class FlickrClient {
     
@@ -51,7 +53,7 @@ class FlickrClient {
                     if total > 0 {
                         print("Successfully loaded images from Flickr")
                         let photosArray = photosDict[Constants.Flickr.ResponseKeys.photosArray] as! [Dictionary<String, AnyObject>]
-                        completion(photosArray, nil) // Return a list of URLs
+                        completion(photosArray.map { $0[Constants.Flickr.ResponseKeys.mediumURL] as! String }, nil) // Return a list of URLs
                         print(photosArray)
                     } else {
                         print("Emptyy Array from Flickr")
@@ -66,6 +68,55 @@ class FlickrClient {
                 sendError(message: error.localizedDescription)
             }
         })
+    }
+    
+    func loadImageURLs(pin: Pin, completion: @escaping FlickrPhotoURLsResponse) { // Thought it best to put it here
+        let latitude = pin.latitude
+        let longitude = pin.longitude
+        
+        let flickrClient = FlickrClient.shared
+        
+        flickrClient.getPhotoURLs(latitude: latitude, longitude: longitude, completion: completion)
+        
+        
+//        flickrClient.getPhotoURLs(latitude: latitude, longitude: longitude, completion: { urlObjects, error in
+//            print("Back from Flickr")
+//            guard error == nil else {
+//                print(error!.localizedDescription)
+//                return
+//            }
+//            
+//            print(urlObjects!.count)
+//            
+//            let numberOfPhotos = min(21, urlObjects!.count)
+//            
+//            let urlObjectsToLoad = urlObjects!.choose(Int(numberOfPhotos))
+//            
+//            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//            let coreDataStack = appDelegate.coreDataStack
+//            
+//            coreDataStack.performBackgroundBatchOperation({ workerContext in
+//                
+//                if let photoAlbum = workerContext.object(with: objectId) as? PhotoAlbum { // Get the photo Album using this same context
+//                    photoAlbum.total = Int16(numberOfPhotos)
+//                    for urlObject in urlObjectsToLoad {
+//                        let url = urlObject[Constants.Flickr.ResponseKeys.mediumURL]
+//                        
+//                        print(url!)
+//                        
+//                        let imageURL = URL(string: url as! String)
+//                        if let imageData = NSData(contentsOf: imageURL!) {
+//                            let photo = Photo(imageData: imageData, context: workerContext)
+//                            photo.photoAlbum = photoAlbum
+//                        }
+//                        
+//                        
+//                    }
+//                }
+//            })
+//            
+//        })
+
     }
     
     private func JSONDeserialize(jsonData: Data) throws -> Dictionary<String, AnyObject> { // For Parsing a JSONObject
@@ -98,7 +149,7 @@ class FlickrClient {
         }
     }
     
-    private func performGetRequestOn(url urlString: String, with parameters: [String:AnyObject], completion: @escaping SessionResponse) {
+    func performGetRequestOn(url urlString: String, with parameters: [String:AnyObject], completion: @escaping SessionResponse) {
         
         // Build the URL
         let urlParametersString = escapedParameters(parameters)
